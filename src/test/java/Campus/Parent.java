@@ -5,7 +5,6 @@ import Constants.ConstantsAPI;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +12,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class LoginTest {
+public class Parent {
     Cookies cookies;
 
     @BeforeClass
@@ -39,13 +38,5 @@ public class LoginTest {
                         .statusCode(200)
                         .extract().response().getDetailedCookies()
         ;
-    }
-
-
-
-
-    @Test
-    public void Test01() {
-        System.out.println("Test passed");
     }
 }
