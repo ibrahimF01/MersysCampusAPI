@@ -35,7 +35,7 @@ public class FieldsTest extends Parent {
                         .when()
                         .post("school-service/api/entity-field")
                         .then()
-                        //.log().body()
+                        .log().body()
                         .statusCode(201)
                         .extract().jsonPath().getString("id")
         ;
@@ -65,7 +65,7 @@ public class FieldsTest extends Parent {
                 .when()
                 .post("school-service/api/entity-field")
                 .then()
-                // .log().body()
+                 .log().body()
                 .statusCode(400)
                 .body("name",equalTo(null))
         ;
@@ -94,7 +94,7 @@ public class FieldsTest extends Parent {
                 .when()
                 .put("school-service/api/entity-field")
                 .then()
-               // .log().body()
+                .log().body()
                 .statusCode(200)
                 .body("name",equalTo(fieldName))
         ;
@@ -114,7 +114,7 @@ public class FieldsTest extends Parent {
                 .when()
                 .delete("school-service/api/entity-field/{fieldID}")
                 .then()
-               // .log().body()
+                .log().body()
                 .statusCode(204)
 
         ;
@@ -133,7 +133,7 @@ public class FieldsTest extends Parent {
                 .when()
                 .delete("school-service/api/entity-field/{fieldID}")
                 .then()
-                // .log().body()
+                 .log().body()
                 .statusCode(400)
 
         ;
@@ -162,7 +162,7 @@ public class FieldsTest extends Parent {
                 .when()
                 .put("school-service/api/entity-field")
                 .then()
-                // .log().body()
+                 .log().body()
                 .statusCode(400)
                 .body("name",equalTo(null))
         ;
