@@ -16,17 +16,21 @@ public class Sch_DepartmentTest extends Parent{
     String deptID;
     String deptName = "Science_Dept";
     String deptCode = "SD_10";
+    String deptNameII = "Art_Dept";
+    String deptCodeII = "AD_11";
     List<Constant> deptConstant=new ArrayList<>();
     List<Section> deptSection=new ArrayList<>();
 
-    Constant cons = new Constant("Experiment","Ex_10");
-    Section sect = new Section("Chemistry","Chm_10",true);
+    Constant cons1 = new Constant("Experiment","Ex_10");
+    Constant cons2 = new Constant("Reading","Rd_11");
+    Section sect1 = new Section("Chemistry","Chm_10",false);
+    Section sect2 = new Section("Literature","Lit_11",true);
 
 
     @Test
     public void creatingSchoolDepartment(){
 
-        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName,deptCode,true);
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName,deptCode,true,deptConstant,deptSection);
 
         deptID =
                 given()
@@ -43,10 +47,10 @@ public class Sch_DepartmentTest extends Parent{
                         .extract().jsonPath().getString("id");
     }
 
-    @Test (dependsOnMethods = "creatingSchoolDepartment")
+    @Test (priority=1)
     public void Recreating_Negative() {
 
-        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName, deptCode,true);
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName, deptCode,true,deptConstant,deptSection);
 
         given()
 
@@ -61,20 +65,15 @@ public class Sch_DepartmentTest extends Parent{
                 .statusCode(400);
     }
 
-    @Test(dependsOnMethods = "creatingSchoolDepartment")
-    public void editingSchoolDepartment(){
+    @Test(priority=2)
+    public void fillingOutSubComponents(){
 
-        String deptName = "Art_Dept";
-        String deptCode = "AD_11";
-
-        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName,deptCode,false);
-
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName,deptCode,true,deptConstant,deptSection);
         scDept.setId(deptID);
-        scDept.setSections(deptSection);
-        scDept.setConstants(deptConstant);
 
-        deptSection.add(sect);
-        deptConstant.add(cons);
+        deptSection.add(sect1);
+        deptConstant.add(cons1);
+
 
         given()
                 .cookies(cookies)
@@ -87,6 +86,67 @@ public class Sch_DepartmentTest extends Parent{
                 .log().body()
                 .statusCode(200);
     }
+    @Test(priority=3)
+    public void fillingOutSubComp_Negative(){
 
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptName,deptCode,true,deptConstant,deptSection);
+        scDept.setId(deptID);
+
+        deptConstant.add(cons1);
+        deptSection.add(sect1);
+
+        given()
+                .cookies(cookies)
+                .contentType(ContentType.JSON)
+                .body(scDept)
+
+                .when()
+                .put("school-service/api/department")
+                .then()
+                .log().body()
+                .statusCode(400);
+    }
+
+    @Test(priority=4)
+    public void editingSchoolDepartment(){
+
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptNameII,deptCodeII,false,deptConstant,deptSection);
+        scDept.setId(deptID);
+
+        deptConstant.remove(cons1);
+        deptSection.remove(sect1);
+
+        given()
+                .cookies(cookies)
+                .contentType(ContentType.JSON)
+                .body(scDept)
+
+                .when()
+                .put("school-service/api/department")
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+    @Test(priority=5)
+    public void editingSubComponents(){
+
+        Sch_DepartmentClass scDept = new Sch_DepartmentClass(deptNameII,deptCodeII,false,deptConstant,deptSection);
+        scDept.setId(deptID);
+
+        deptConstant.add(cons2);
+        deptSection.add(sect2);
+
+
+        given()
+                .cookies(cookies)
+                .contentType(ContentType.JSON)
+                .body(scDept)
+
+                .when()
+                .put("school-service/api/department")
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
 
 }

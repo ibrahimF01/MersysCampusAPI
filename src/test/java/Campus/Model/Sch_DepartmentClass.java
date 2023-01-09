@@ -60,12 +60,14 @@ public class Sch_DepartmentClass {
     public void setConstants(List<Constant> constants) {this.constants = constants;}
 
 
-    public Sch_DepartmentClass(String name, String code,boolean active)
+    public Sch_DepartmentClass(String name, String code,boolean active,List<Constant>constants,List<Section>sections)
     {
         setName(name);
         setCode(code);
         setSchool("6390f3207a3bcb6a7ac977f9");
         setActive(active);
+        setConstants(constants);
+        setSections(sections);
     }
 
 }
