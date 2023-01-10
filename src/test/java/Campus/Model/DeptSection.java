@@ -1,6 +1,6 @@
 package Campus.Model;
 
-public class Section {
+public class DeptSection {
     String name;
     String shortName;
     boolean active;
@@ -34,7 +34,7 @@ public class Section {
 
     public void setIndex(int index) { this.index = index; }
 
-    public Section(String name, String shortName, boolean active) {
+    public DeptSection(String name, String shortName, boolean active) {
         setName(name);
         setShortName(shortName);
         setActive(active);
