@@ -87,6 +87,7 @@ public class DiscountsTest extends Parent{
                 .cookies(cookies)
                 .contentType(ContentType.JSON)
                 .pathParam("discountsId", discountsId)
+
                 .when()
                 .delete("school-service/api/discounts/{discountsId}")
                 .then()

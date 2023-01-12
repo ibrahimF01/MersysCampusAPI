@@ -3,15 +3,15 @@ package Campus.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sch_DepartmentClass {
+public class DepartmentClass {
     private String id;
     private String name;
     private String code;
     private boolean active;
-    private String school;
+    private String school="6390f3207a3bcb6a7ac977f9";
 
-    private List<Section> sections=new ArrayList<>();
-    private List<Constant> constants=new ArrayList<>();
+    private List<DeptSection> sections=new ArrayList<>();
+    private List<DeptConstant> constants=new ArrayList<>();
 
 
 
@@ -33,9 +33,9 @@ public class Sch_DepartmentClass {
         return school;
     }
 
-    public List<Constant> getConstants() {return constants;}
+    public List<DeptConstant> getConstants() {return constants;}
 
-    public List<Section> getSections() {return sections;}
+    public List<DeptSection> getSections() {return sections;}
 
 
     public void setId(String id) {
@@ -55,17 +55,19 @@ public class Sch_DepartmentClass {
         this.school = school;
     }
 
-    public void setSections(List<Section> sections) {this.sections = sections;}
+    public void setSections(List<DeptSection> sections) {this.sections = sections;}
 
-    public void setConstants(List<Constant> constants) {this.constants = constants;}
+    public void setConstants(List<DeptConstant> constants) {this.constants = constants;}
 
 
-    public Sch_DepartmentClass(String name, String code,boolean active)
+    public DepartmentClass(String name, String code, List<DeptConstant>constants, List<DeptSection>sections, boolean active)
     {
         setName(name);
         setCode(code);
-        setSchool("6390f3207a3bcb6a7ac977f9");
+        setSchool(school);
         setActive(active);
+        setConstants(constants);
+        setSections(sections);
     }
 
 }

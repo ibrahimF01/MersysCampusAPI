@@ -1,6 +1,6 @@
 package Campus.Model;
 
-public class Constant {
+public class DeptConstant {
     String key;
     String value;
 
@@ -18,7 +18,7 @@ public class Constant {
         this.value = value;
     }
 
-    public Constant(String key, String value) {
+    public DeptConstant(String key, String value) {
         setKey(key);
         setValue(value);
     }
