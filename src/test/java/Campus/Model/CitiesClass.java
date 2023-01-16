@@ -23,6 +23,7 @@ public class CitiesClass {
     private String state=null;
     private String[] translateName={};
 
+
     public CitiesClass() {
     }
 

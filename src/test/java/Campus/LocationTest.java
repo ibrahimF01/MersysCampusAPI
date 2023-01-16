@@ -160,6 +160,7 @@ public class LocationTest extends Parent{
         return RandomStringUtils.randomAlphabetic(8).toLowerCase();
     }
 
+
     public String getRandomShortName() {
         return RandomStringUtils.randomAlphabetic(3).toLowerCase();
     }

@@ -47,6 +47,7 @@ public class LocationClass {
         this.active = active;
     }
 
+
     public int getCapacity() {
         return capacity;
     }
